@@ -1,0 +1,172 @@
+@import 'jeet'
+
+global-reset()
+
+body
+  font-family 'Roboto'  
+
+body,
+html 
+  height 100%  
+
+a
+  cursor pointer
+  
+h1
+  font-size 3em
+
+*, *:before, *:after
+  box-sizing border-box
+  
+// edit()
+  
+// Permutations
+//   Header
+//   Header-Fixed
+//   Header, Footer
+//   Header-Fixed, Footer
+//   Header, Footer-Fixed
+//   Header-Fixed, Footer-Fixed
+//   Footer
+//   Footer-Fixed
+
+//   Article
+//   Article, Aside
+
+// Layouts
+
+$minPad
+  padding 0 15px
+  
+shrink1 = 0.666
+shrink2 = 0.333
+  
+trueHeight(height)
+  & > *
+    line-height height
+  height height
+
+row(height)
+  width 100%
+  & > * 
+    float left
+  & > *:first-child
+    @extend $minPad
+  trueHeight(height)
+  +at(3)
+    trueHeight(height * shrink1)
+  +below(2) 
+    trueHeight(height * shrink2)
+
+headerFooterLayout(headerHeight, footerHeight)
+  .wrapper
+    position relative
+    height 100%
+    
+    .header   
+      position fixed
+      row(headerHeight)
+      +above(3)
+        .nav-icon
+          display none
+    
+    .main
+      height 100% 
+      padding headerHeight 0 footerHeight
+      +at(3)
+        padding headerHeight * shrink1 0 footerHeight * shrink1
+      +below(2)
+        padding headerHeight * shrink2 0 footerHeight * shrink2
+        
+    .footer
+      position absolute
+      bottom 0 
+      row(footerHeight)
+      
+// Main Grid
+
+article,
+.left-aside,
+.right-aside  
+  height 100%
+
+.left-aside
+  span(1/5)
+  height 100%
+  a
+    display block
+    line-height 30px
+    @extend $minPad  
+  +below(2)
+    display none
+    position absolute
+    width 75%
+    
+  &.active
+    display block
+
+article
+  @extend $minPad
+  span(3/5)
+  height 100%
+  +at(3)
+    span(4/5)
+  +below(2)
+    span(1/1)
+  
+.right-aside  
+  span(1/5)
+  height 100%
+  +below(3)
+    display none
+
+// Positioning
+ 
+posY(n)
+  position relative
+  top (n)%
+  transform translateY(-(n)%)  
+
+center()
+  height 100%
+  posY(50)
+  
+// Form Elements
+
+.btn
+  cursor pointer
+
+// Layout Build
+
+headerFooterLayout(160px, 100px)
+
+// Grid
+.c1-4
+  col(1/4)
+.c2-4
+  col(2/4)
+.center
+  text-align center
+  
+// Colors / Spec
+
+.header
+  background royalblue
+  color white
+      
+.main
+  background white
+  
+.left-aside
+  background-color silver + 30
+  a
+    background-color silver
+    &:hover
+      background-color green
+  
+.right-aside  
+  background silver + 30
+  
+.footer
+  background #333
+  color white
