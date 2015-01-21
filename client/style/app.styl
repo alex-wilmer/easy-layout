@@ -82,8 +82,6 @@ headerFooterLayout(headerHeight, footerHeight)
       position absolute
       bottom 0 
       row(footerHeight)
-      
-// Main Grid
 
 article,
 .left-aside,
@@ -97,6 +95,7 @@ article,
     display block
     line-height 30px
     @extend $minPad  
+  display block
   +below(2)
     display none
     position absolute
@@ -104,6 +103,19 @@ article,
     
   &.active
     display block
+    animation expand 0.5s ease forwards 
+    
+  &.inactive
+    display block
+    animation retract 0.5s ease forwards     
+    
+@keyframes expand
+  from {transform: translateX(-100%)}
+  to {transform: translateX()}
+  
+@keyframes retract
+  from {transform: translateX()}
+  to {transform: translateX(-100%)}
 
 article
   @extend $minPad
@@ -125,11 +137,7 @@ article
 posY(n)
   position relative
   top (n)%
-  transform translateY(-(n)%)  
-
-center()
-  height 100%
-  posY(50)
+  transform translateY(-(n)%)
   
 // Form Elements
 
@@ -141,12 +149,11 @@ center()
 headerFooterLayout(160px, 100px)
 
 // Grid
-.c1-4
-  col(1/4)
-.c2-4
-  col(2/4)
+
 .center
   text-align center
+  +above(3)
+    width 100%
   
 // Colors / Spec
 
