@@ -18,7 +18,7 @@ h1
 *, *:before, *:after
   box-sizing border-box
   
-edit()
+//edit()
   
 // Permutations
 //   Header
@@ -39,7 +39,7 @@ $minPad
   padding 0 15px
   
 shrink1 = 0.85
-shrink2 = 0.7
+shrink2 = 0.5
   
 trueHeight(height)
   & > *
@@ -95,18 +95,14 @@ article,
     display block
     line-height 30px
     @extend $minPad  
-  display block
   +below(2)
-    display none
     position absolute
     width 75%
     
   &.active
-    display block
     animation expand 0.5s ease forwards 
     
   &.inactive
-    display block
     animation retract 0.5s ease forwards     
     
 @keyframes expand
@@ -146,7 +142,7 @@ posY(n)
 
 // Layout Build
 
-headerFooterLayout(60px, 60px)
+headerFooterLayout(100px, 100px)
 
 // Grid
 
