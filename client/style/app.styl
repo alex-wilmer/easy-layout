@@ -101,6 +101,7 @@ article,
     
   &.active
     animation expand 0.5s ease forwards 
+    height calc(100% - )
     
   &.inactive
     animation retract 0.5s ease forwards     
@@ -142,7 +143,10 @@ posY(n)
 
 // Layout Build
 
-headerFooterLayout(100px, 100px)
+headerHeight = 100px
+footerHeight = 60px
+
+headerFooterLayout(headerHeight, footerHeight)
 
 // Grid
 
