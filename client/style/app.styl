@@ -38,9 +38,6 @@ h1
 $minPad
   padding 0 15px
   
-shrink1 = 0.85
-shrink2 = 0.5
-  
 trueHeight(height)
   & > *
     line-height height
@@ -53,10 +50,6 @@ row(height)
   & > *:first-child
     @extend $minPad
   trueHeight(height)
-  +at(3)
-    trueHeight(height * shrink1)
-  +below(2) 
-    trueHeight(height * shrink2)
 
 headerFooterLayout(headerHeight, footerHeight)
   .wrapper
@@ -73,61 +66,58 @@ headerFooterLayout(headerHeight, footerHeight)
     .main
       height 100% 
       padding headerHeight 0 footerHeight
-      +at(3)
-        padding headerHeight * shrink1 0 footerHeight * shrink1
-      +below(2)
-        padding headerHeight * shrink2 0 footerHeight * shrink2
         
     .footer
       position absolute
       bottom 0 
       row(footerHeight)
 
-article,
-.left-aside,
-.right-aside  
-  height 100%
+articleAsideLayout(padding)
+  article,
+  .left-aside,
+  .right-aside  
+    height 100%
+    
+  article
+    @extend $minPad
+    span(3/5)
+    height 100%
+    +at(3)
+      span(4/5)
+    +below(2)
+      span(1/1)
+    
+  .right-aside  
+    span(1/5)
+    height 100%
+    +below(3)
+      display none    
 
-.left-aside
-  span(1/5)
-  height 100%
-  a
-    display block
-    line-height 30px
-    @extend $minPad  
-  +below(2)
-    position absolute
-    width 75%
+  .left-aside
+    span(1/5)
+    height 100%
+    a
+      display block
+      line-height 30px
+      @extend $minPad  
+    +below(2)
+      position absolute
+      width 75%
+      height 'calc(100% - %spx)' % padding
+      
+    &.active
+      animation expand 0.5s ease forwards 
+      
+    &.inactive
+      animation retract 0.5s ease forwards     
+      
+  @keyframes expand
+    from {transform: translateX(-100%)}
+    to {transform: translateX()}
     
-  &.active
-    animation expand 0.5s ease forwards 
-    height calc(100% - )
-    
-  &.inactive
-    animation retract 0.5s ease forwards     
-    
-@keyframes expand
-  from {transform: translateX(-100%)}
-  to {transform: translateX()}
-  
-@keyframes retract
-  from {transform: translateX()}
-  to {transform: translateX(-100%)}
-
-article
-  @extend $minPad
-  span(3/5)
-  height 100%
-  +at(3)
-    span(4/5)
-  +below(2)
-    span(1/1)
-  
-.right-aside  
-  span(1/5)
-  height 100%
-  +below(3)
-    display none
+  @keyframes retract
+    from {transform: translateX()}
+    to {transform: translateX(-100%)}
 
 // Positioning
  
@@ -143,10 +133,15 @@ posY(n)
 
 // Layout Build
 
-headerHeight = 100px
-footerHeight = 60px
+headerHeight = 40
+footerHeight = 40
+msinPadding = headerHeight + footerHeight
 
-headerFooterLayout(headerHeight, footerHeight)
+headerPx = '%spx' % headerHeight
+footerPx = '%spx' % footerHeight
+
+headerFooterLayout(headerPx, footerPx)
+articleAsideLayout(msinPadding)
 
 // Grid
 
@@ -165,7 +160,7 @@ headerFooterLayout(headerHeight, footerHeight)
   background white
   
 .left-aside
-  background-color silver + 30
+  background-color yellow + 30
   a
     background-color silver
     &:hover
