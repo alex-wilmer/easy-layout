@@ -9,8 +9,28 @@ template(name='leftAside')
     +nav  
 
 template(name='rightAside')
-  aside.right-aside Right side
+  aside.right-aside
+    h5 Proceeds to benefit
+    img(src='http://joecarterclassic.com/images/JC_T2_home_03_CAF_logo.png')
+    h5 Our Sponsors
+    img(src='http://joecarterclassic.com/images/JC_T2_home_04.gif')
+    h5 Celebrity Guests
+    +guests
 
 template(name='article')
-  article 
-    img(src='http://joecarterclassic.com/images/JC_T2_home_03_logo.png')
+  article
+    .first-panel
+      img(src='http://joecarterclassic.com/images/JC_T2_home_03_logo.png')
+
+    .second-panel
+
+template(name='guests')
+  .guests
+    p lorem ipsum
+    p lorem ipsum
+    p lorem ipsum
+    p lorem ipsum
+    p lorem ipsum
+    p lorem ipsum
+    p lorem ipsum
+    p lorem ipsum
