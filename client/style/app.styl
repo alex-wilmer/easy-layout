@@ -18,7 +18,7 @@ h1
 *, *:before, *:after
   box-sizing border-box
   
-//edit()
+edit()
   
 // Permutations
 //   Header
@@ -33,10 +33,12 @@ h1
 //   Article
 //   Article, Aside
 
-// Layouts
+// Extends
 
 $minPad
   padding 0 15px
+
+// Layouts
   
 trueHeight(height)
   & > *
@@ -79,10 +81,13 @@ articleAsideLayout(padding)
     height 100%
     
   article
+    +above(3)
+      background url('http://joecarterclassic.com/images/JC_T2_home_03_ribbon.jpg')
+      background-size cover
     @extend $minPad
-    span(3/5)
+    span(1/1)
     height 100%
-    +at(3)
+    +at(4)
       span(4/5)
     +below(2)
       span(1/1)
@@ -90,7 +95,7 @@ articleAsideLayout(padding)
   .right-aside  
     span(1/5)
     height 100%
-    +below(3)
+    +below(2)
       display none    
 
   .left-aside
@@ -100,6 +105,8 @@ articleAsideLayout(padding)
       display block
       line-height 30px
       @extend $minPad  
+    +above(3)
+      display none
     +below(2)
       position absolute
       width 75%
@@ -119,6 +126,27 @@ articleAsideLayout(padding)
     from {transform: translateX()}
     to {transform: translateX(-100%)}
 
+// Title
+
+.title
+  +above(3)
+    display none
+    
+// Navigation
+
+.nav
+  @extend $minPad
+  font-size 0.7em
+  a,
+  a:visited
+    color white
+    text-decoration none
+  a + a
+    margin-left 10px
+  +below(2)
+    display none
+  
+
 // Positioning
  
 posY(n)
@@ -133,7 +161,7 @@ posY(n)
 
 // Layout Build
 
-headerHeight = 40
+headerHeight = 60
 footerHeight = 40
 msinPadding = headerHeight + footerHeight
 
@@ -152,23 +180,34 @@ articleAsideLayout(msinPadding)
   
 // Colors / Spec
 
+body
+  background url('http://joecarterclassic.com/images/JC_T2_home_back.jpg')
+
 .header
-  background royalblue
   color white
       
-.main
-  background white
-  
+// .main
+//   background white
 .left-aside
-  background-color yellow + 30
+  background-color #101D3A
   a
-    background-color silver
-    &:hover
-      background-color green
+    color white
+    text-decoration none
+    
+article
+  +below(3)
+    text-align center
+  img
+    +above(3)
+      float right
+//   a
+//     background-color silver
+//     &:hover
+//       background-color green
   
-.right-aside  
-  background silver + 30
+// .right-aside  
+//   background silver + 30
   
-.footer
-  background #333
-  color white
+// .footer
+//   background #333
+//   color white
