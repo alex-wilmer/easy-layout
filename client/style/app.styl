@@ -38,10 +38,15 @@ h5
 //   Article
 //   Article, Aside
 
+// Utility
+
+.full
+  width 100%
+
 // Extends
 
 $minPad
-  padding 0 15px
+  padding 0 20px
 
 // Layouts
   
@@ -116,7 +121,7 @@ articleAsideLayout(padding)
     +above(3)
       display none
     +below(2)
-      position absolute
+      position fixed
       width 75%
       height 'calc(100% - %spx)' % padding
       
@@ -189,9 +194,8 @@ articleAsideLayout(msinPadding)
 
 // max-width
 
-.main,
-.max-width
-  max-width 1200px
+.max
+  max-width 1400px
   margin 0 auto
 
 // Grid
@@ -219,31 +223,34 @@ body
     background green
     
 article
+  padding-right 20px
   +below(3)
     text-align center  
   .first-panel
     height 400px
-    +above(4)
-      height 500px
     +above(3)
       background url('http://joecarterclassic.com/images/JC_T2_home_03_ribbon.jpg')
-      background-size cover
+      background-size cover    
+    +above(4)
+      height 600px
+
       
   .second-panel
     margin-top 25px
-    height 400px
-    +above(4)
-      height 558px
-    +above(3)
-      background url('http://joecarterclassic.com/images/group-photo2.jpg')
-      background-size cover
+    padding-top 59%
+    background url('http://joecarterclassic.com/images/group-photo2.jpg') no-repeat
+    background-size 100%
   img
     +above(3)
       float right
       padding-right 25px
       posY(50)
     +above(4)
-      padding-right 35px      
+      padding-right 35px  
+      width 400px  
+      
+  .third-panel
+    margin-top 25px  
   
 .right-aside  
   text-align center
