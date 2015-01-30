@@ -3,8 +3,11 @@ head
   meta(name='viewport' content='width=device-width')
   link(href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css')
 
-body
+template(name='layout')
   .wrapper
-    +header
-    +main
+    +header  
+    +yield
     +footer
+
+template(name='home')
+  +main

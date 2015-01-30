@@ -11,3 +11,4 @@ cryptoquick:stylus-multi
 mquandalle:jade
 coffeescript
 fortawesome:fontawesome
+iron:router
